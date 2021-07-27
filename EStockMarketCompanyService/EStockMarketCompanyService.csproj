@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>3e53ae8a-6997-41d9-841a-53b5e8e6692f</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EStockMarketCompanyService.Domain\EStockMarketCompanyService.Domain.csproj" />
+    <ProjectReference Include="..\EStockMarketCompanyService.Infrastructure\EStockMarketCompanyService.Infrastructure.csproj" />
+    <ProjectReference Include="..\EStockMarketCompanyService.Message.Send\EStockMarketCompanyService.Message.Send.csproj" />
+  </ItemGroup>
+
+
+</Project>
