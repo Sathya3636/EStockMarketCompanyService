@@ -11,10 +11,8 @@ namespace EStockMarketCompanyService.Message.Send
     {
         private IConnection _connection;
         private readonly IConfiguration _configuration;
-        private readonly string _hostname;
+        private readonly string _connectionUri;
         private readonly string _queueName;
-        private readonly string _username;
-        private readonly string _password;
 
         public DeleteStockRabbitMqService(IConfiguration configuration)
         {
@@ -22,10 +20,9 @@ namespace EStockMarketCompanyService.Message.Send
 
             var configSection = _configuration.GetSection("RabbitMq");
 
-            _hostname = configSection.GetSection("Hostname").Value;
+            _connectionUri = configSection.GetSection("ConnectionUri").Value;
             _queueName = configSection.GetSection("QueueName").Value;
-            _username = configSection.GetSection("UserName").Value;
-            _password = configSection.GetSection("Password").Value;
+            
             CreateConnection();
         }
 
@@ -49,10 +46,9 @@ namespace EStockMarketCompanyService.Message.Send
             {
                 var factory = new ConnectionFactory
                 {
-                    HostName = _hostname,
-                    UserName = _username,
-                    Password = _password
+                    Uri = new Uri(_connectionUri)
                 };
+
                 _connection = factory.CreateConnection();
             }
             catch (Exception ex)
